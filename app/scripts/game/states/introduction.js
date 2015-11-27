@@ -3,17 +3,16 @@
 angular.module('app.game')
 	.factory('IntroductionFactory', ['Phaser', function (Phaser) {
 		
-		var mouse, food, user, platform, cPlatform, pPlatform,
-			preScoreLabel, scoreLabel, scoreFont, scorePosition,
-			controls;		
+		var mouse, food, platform, cPlatform, pPlatform,
+			score = 0, scoreLabel, scoreFont, scorePosition;		
 
-		function Introduction (iGame, eatCookie){
+		function Introduction (iGame){
 			
 
 			return {
 				//find objects in a Tiled layer that containt a property called "type" equal to a certain value
 				findObjectsByType: function(type, map, layer) {
-				    var result = new Array();
+				    var result = [];
 				    map.objects[layer].forEach(function(element){
 						if(element.type === type) {
 							//Phaser uses top left, Tiled bottom left so we have to adjust the y position
@@ -58,11 +57,11 @@ angular.module('app.game')
 				    this.map.addTilesetImage('tileMap', 'map_tiles');
 				    this.tileLayer = this.map.createLayer('Tile Layer 1');
 				    //collision on blockedLayer
-    				this.map.setCollisionBetween(1, 20, true, 'Tile Layer 1');
+    				// this.map.setCollisionBetween(1, 20, true, 'Tile Layer 1');
 				    this.tileLayer.resizeWorld();
 
 					// Food
-					result = this.findObjectsByType('collectable', this.map, 'Object Layer 1');
+					var result = this.findObjectsByType('collectable', this.map, 'Object Layer 1');
 					food = iGame.add.group();
 					food.enableBody = true;
 					angular.forEach(result, function (element){
@@ -78,7 +77,7 @@ angular.module('app.game')
 					});
 
 					// Mouse
-					var result = this.findObjectsByType('playerStart', this.map, 'Object Layer 1');
+					result = this.findObjectsByType('playerStart', this.map, 'Object Layer 1');
 					mouse = iGame.add.sprite(result[0].x, result[0].y, 'mouse');
 					iGame.physics.enable(mouse, Phaser.Physics.ARCADE);
 					mouse.animations.add('idle_right', [0], 5, true);
@@ -86,6 +85,7 @@ angular.module('app.game')
 					mouse.animations.add('idle_left', [3], 5, true);
 					mouse.animations.add('left', [4,5], 5, true);
 					mouse.facing = 'right'; // Should only ever be left or right.
+					iGame.camera.follow(mouse);
 
 					// Score
 					this.createScore();
@@ -100,7 +100,8 @@ angular.module('app.game')
 				collect: function (player, collectable) {
 					// console.log('yum!');
 					collectable.destroy();
-
+					score += 10;
+					scoreLabel.text = "Score: " + score;
 				},
 				onPlatform: function (player, platform) {
 					// console.log('on platform');
@@ -122,13 +123,13 @@ angular.module('app.game')
  						y: iGame.world.bounds.topLeft.y
  					};
 				    //Create the score label
-				    preScoreLabel = iGame.add.text(scorePosition.x, scorePosition.y, "Score: ", {font: scoreFont, stroke: "#535353", strokeThickness: 15}); 
-				    scoreLabel = iGame.add.text(scorePosition.x + preScoreLabel.width, scorePosition.y, "0", {font: scoreFont, fill: "#ffffff", stroke: "#535353", strokeThickness: 15}); 
-				    scoreLabel.anchor.setTo(0.5, 0);
-				    scoreLabel.align = 'center';
+				    scoreLabel = iGame.add.text(scorePosition.x + 60, scorePosition.y, "Score: 0", {font: scoreFont, stroke: "#ff51d8", strokeThickness: 15}); 
+				    scoreLabel.fixedToCamera = true;
+				    // scoreLabel.anchor.setTo(0.5, 0);
+				    // scoreLabel.align = 'center';
 				},
 				changeDir: function (direction){
-					console.log('changing dir to ' + direction);
+					// console.log('changing dir to ' + direction);
 					// Remember that in the game world, the y axis grows downward
 					// like memory in a computer. pushl popl. That ol' chestnut. thatl chestnut haha.
 					var v = mouse.body.velocity;
@@ -177,15 +178,12 @@ angular.module('app.game')
 				runUserCommand: function (command) {
 					var v = mouse.body.velocity;
 					this.changeDir(command);
-					// while(v !== 0){
-						
-					// }
 				}
 			};
-		};
+		}
 
 		return {
 			getIntro: Introduction,
 			getMouse: mouse
 		};
-	}])
+	}]);

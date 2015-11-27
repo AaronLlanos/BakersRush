@@ -10,13 +10,13 @@ angular.module('app.game.controls', [])
 				scope.showError = function(resp){
 					console.log('showing an error here');
 				};
-				iElement.find('textarea.code').on('change', function (){
-					// hljs.highlightBlock(this);
-				});
+				// iElement.find('textarea.code').on('change', function (){
+				// 	hljs.highlightBlock(this);
+				// });
 
 			},
 			controller: function ($scope, $element) {
-
+				
 				$scope.controls = ["up()", "down()", "left()", "right()"];
 				// Initialize typeahead
 				$element.find('textarea').typeahead({source: $scope.controls});
