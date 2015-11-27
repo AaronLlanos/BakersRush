@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="4" tilewidth="100" tileheight="100" backgroundcolor="#7a804e" nextobjectid="54">
+ <tileset firstgid="1" name="objectLayer" tilewidth="25" tileheight="25" tilecount="1">
+  <image source="../cookie-crumb.png" width="25" height="25"/>
+ </tileset>
+ <tileset firstgid="2" name="tileMap" tilewidth="100" tileheight="100" tilecount="25">
+  <image source="tilemap.png" width="500" height="500"/>
+ </tileset>
+ <tileset firstgid="27" name="mouse" tilewidth="100" tileheight="50" tilecount="6">
+  <image source="../sprites/mouse.png" width="600" height="50"/>
+ </tileset>
+ <tileset firstgid="33" name="platform" tilewidth="100" tileheight="50" tilecount="1">
+  <image source="../sprites/platformsprite.png" width="100" height="50"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="6" height="4">
+  <data encoding="csv">
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0,
+0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="28" name="cookie" type="collectable" gid="1" x="325" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="29" name="cookie" type="collectable" gid="1" x="300" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="30" name="cookie" type="collectable" gid="1" x="350" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="31" name="cookie" type="collectable" gid="1" x="425" y="275" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="36" name="cookie" type="collectable" gid="1" x="200" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="37" name="cookie" type="collectable" gid="1" x="225" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="38" name="cookie" type="collectable" gid="1" x="250" y="225" width="25" height="25">
+   <properties>
+    <property name="display" value="cookie"/>
+   </properties>
+  </object>
+  <object id="48" type="playerStart" gid="27" x="100" y="200" width="100" height="50"/>
+  <object id="50" type="platform" gid="33" x="100" y="200" width="100" height="50">
+   <properties>
+    <property name="display" value="platform"/>
+   </properties>
+  </object>
+  <object id="51" type="platform" gid="33" x="400" y="200" width="100" height="50">
+   <properties>
+    <property name="display" value="platform"/>
+   </properties>
+  </object>
+  <object id="53" type="platform" gid="33" x="400" y="300" width="100" height="50">
+   <properties>
+    <property name="display" value="platform"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
