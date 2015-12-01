@@ -37,4 +37,4 @@ angular.module('app.game.controls')
 			formatCommands: formatCommands,
 			checkSyntax: checkSyntax
 		};
-	}])
+	}]);

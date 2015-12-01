@@ -7,12 +7,6 @@ angular.module('app.game')
 	 * Here the game manager is defined and will constantly oversee level completion, acheivements.
 	 */
 	.controller('GameCtrl', ['$scope', function ($scope) {
-		var manager;
-		
-		$scope.management = manager = {};
-		manager.foodCollected = 0;
-		manager.foodOnBoard = function (){
-			return;
-		};
-		
+		$scope.highestLevel = 0;
+		$scope.currentLevel = 0;
 	}]);

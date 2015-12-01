@@ -3,10 +3,10 @@
 angular.module('app.game')
 	.factory('IntroductionFactory', ['Phaser', function (Phaser) {
 		
-		var mouse, food, platform, cPlatform, pPlatform,
+		var mouse, food, cheese, platform, cPlatform, pPlatform,
 			score = 0, scoreLabel, scoreFont, scorePosition;		
 
-		function Introduction (iGame){
+		function Introduction (iGame, scope){
 			
 
 			return {
@@ -38,10 +38,12 @@ angular.module('app.game')
 				    });
 				},
 				preload: function(){
+					// onPlatform = new Phaser.Signal();
 					// iGame.load.image('mouse', 'assets/char-images/sitting-right.png');
 					iGame.load.tilemap('introMap', 'assets/maps/intro_map.json', null, Phaser.Tilemap.TILED_JSON);
 					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 100, 50);
 					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 100, 50);
+					iGame.load.image('cheese', 'assets/sprites/cheese.png', 75, 75);
 					iGame.load.image('cookie', 'assets/cookie-crumb.png');
 					iGame.load.spritesheet('map_tiles', 'assets/maps/tilemap.png', 100, 100);
 					iGame.load.image('background_image', 'assets/woodgrain-background.jpg');
@@ -52,6 +54,7 @@ angular.module('app.game')
 					this.map = iGame.add.tilemap('introMap');
 					this.background = iGame.add.tileSprite(0, 0, this.world.width, this.world.height, 'background_image');
 					this.background.fixedToCamera = true;
+				    this.map.addTilesetImage('cheese', 'cheese');
 				    this.map.addTilesetImage('objectLayer', 'cookie');
 				    this.map.addTilesetImage('platform', 'platform');
 				    this.map.addTilesetImage('tileMap', 'map_tiles');
@@ -60,8 +63,16 @@ angular.module('app.game')
     				// this.map.setCollisionBetween(1, 20, true, 'Tile Layer 1');
 				    this.tileLayer.resizeWorld();
 
+				    // THE CHEESE
+				    var result = this.findObjectsByType('cheese', this.map, 'Object Layer 1');
+				    cheese = iGame.add.group();
+					cheese.enableBody = true;
+					angular.forEach(result, function (element){
+						that.createFromTiledObject(element, cheese);
+					});
+
 					// Food
-					var result = this.findObjectsByType('collectable', this.map, 'Object Layer 1');
+					result = this.findObjectsByType('collectable', this.map, 'Object Layer 1');
 					food = iGame.add.group();
 					food.enableBody = true;
 					angular.forEach(result, function (element){
@@ -96,6 +107,7 @@ angular.module('app.game')
 					iGame.physics.arcade.collide(mouse, this.tileLayer);
 					iGame.physics.arcade.overlap(mouse, food, this.collect, null, this);
 					iGame.physics.arcade.overlap(mouse, platform, this.onPlatform, null, this);
+					iGame.physics.arcade.overlap(mouse, cheese, this.endLevel, null, this);
 				},
 				collect: function (player, collectable) {
 					// console.log('yum!');
@@ -105,15 +117,25 @@ angular.module('app.game')
 				},
 				onPlatform: function (player, platform) {
 					// console.log('on platform');
+					var direction;
 					if(cPlatform !== platform){
-						console.log('on new platform');
+						// console.log('on new platform');
+						console.log(scope.fval);
 						pPlatform = cPlatform;
 						cPlatform = platform;
 
 						// Just move the mouse to the center of the new platform and sit him down.
-						this.stopDir();
+						this.changeDir('idle');
 						player.body.x = platform.body.x;
 						player.body.y = platform.body.y;
+
+						// Check to see if the mouse should be moved to a new platform
+						if (scope.fval.length > 0) {
+							direction = scope.fval.pop();
+							console.log(direction);
+							this.changeDir(direction.func);
+						}
+
 					}
 				},
 				createScore: function(){
@@ -139,7 +161,7 @@ angular.module('app.game')
 							mouse.facing = 'left';
 						}
 						mouse.animations.play('left');
-					} else if (direction === 'up'){
+					} else if (direction === 'up'){ 
 						v.y = -200;
 						if (mouse.facing === 'left'){
 							mouse.animations.play('left'); // Do not add facing down.
@@ -170,14 +192,6 @@ angular.module('app.game')
 							}
 						}
 				    }
-				},
-				stopDir: function (){
-					// console.log('stopDir()');
-					this.changeDir('idle');
-				},
-				runUserCommand: function (command) {
-					var v = mouse.body.velocity;
-					this.changeDir(command);
 				}
 			};
 		}

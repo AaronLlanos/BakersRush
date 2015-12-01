@@ -4,8 +4,8 @@ angular.module('app.game')
 	.factory('GameStates', ['Phaser', 'IntroductionFactory', function (Phaser, IntroductionFactory) {
 		
 
-		function getIntro (iGame){
-			return IntroductionFactory.getIntro(iGame);
+		function getIntro (iGame, scope){
+			return IntroductionFactory.getIntro(iGame, scope);
 		}
 
 		function getLevel1 (iGame){

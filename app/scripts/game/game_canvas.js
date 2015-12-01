@@ -10,25 +10,25 @@ angular.module('app.game')
 	 * 			to Phaser
 	 * 
 	 */
-	.directive('gameCanvas', ['GameFactory', 'GameControlFactory', function (GameFactory, GameControlFactory) {
+	.directive('gameCanvas', ['GameFactory', 'GameControlFactory', '$log', '$timeout', function (GameFactory, GameControlFactory, $log, $timeout) {
 
 		var linkFn = function (scope, ele, attrs) {
+			scope.fval = [];
 			scope.game = GameFactory.createGame(ele, scope, scope.mapId);
 			scope.$on('$destroy', function() {
+				// $log.log('destroy!');
 				GameFactory.destroyGame(scope.game);
 			});
+			scope.runCommand = function (commands){
+				scope.fval = commands.reverse();
+				scope.game.state.restart();
+			};
 		};
 
 		var controller = function ($scope, $element) {
 			// Controls for Phaser from the controls module.
-			$scope.$on('run_controls', function (event, fval){
-				var state = $scope.game.state.getCurrentState(),
-					runFunc;
-				// console.log(state);
-				angular.forEach(fval, function (o, i){
-					runFunc = state.runUserCommand(o.func);
-				});
-			});	
+			
+			
 		};
 
 		return {
