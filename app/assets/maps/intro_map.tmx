@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="4" tilewidth="100" tileheight="100" backgroundcolor="#7a804e" nextobjectid="54">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="4" tilewidth="100" tileheight="100" backgroundcolor="#7a804e" nextobjectid="55">
  <tileset firstgid="1" name="objectLayer" tilewidth="25" tileheight="25" tilecount="1">
   <image source="../cookie-crumb.png" width="25" height="25"/>
  </tileset>
@@ -11,6 +11,9 @@
  </tileset>
  <tileset firstgid="33" name="platform" tilewidth="100" tileheight="50" tilecount="1">
   <image source="../sprites/platformsprite.png" width="100" height="50"/>
+ </tileset>
+ <tileset firstgid="34" name="cheese" tilewidth="75" tileheight="75" tilecount="1">
+  <image source="../sprites/cheese.png" width="75" height="75"/>
  </tileset>
  <layer name="Tile Layer 1" width="6" height="4">
   <data encoding="csv">
@@ -67,9 +70,9 @@
     <property name="display" value="platform"/>
    </properties>
   </object>
-  <object id="53" type="platform" gid="33" x="400" y="300" width="100" height="50">
+  <object id="54" type="cheese" gid="34" x="411" y="325" width="75" height="75">
    <properties>
-    <property name="display" value="platform"/>
+    <property name="display" value="cheese"/>
    </properties>
   </object>
  </objectgroup>

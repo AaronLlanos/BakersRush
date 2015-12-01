@@ -178,20 +178,20 @@
                  "y":200
                 }, 
                 {
-                 "gid":33,
-                 "height":50,
-                 "id":53,
+                 "gid":34,
+                 "height":75,
+                 "id":54,
                  "name":"",
                  "properties":
                     {
-                     "display":"platform"
+                     "display":"cheese"
                     },
                  "rotation":0,
-                 "type":"platform",
+                 "type":"cheese",
                  "visible":true,
-                 "width":100,
-                 "x":400,
-                 "y":300
+                 "width":75,
+                 "x":411,
+                 "y":325
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -200,7 +200,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":54,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "properties":
     {
@@ -272,6 +272,22 @@
          "tilecount":1,
          "tileheight":50,
          "tilewidth":100
+        }, 
+        {
+         "firstgid":34,
+         "image":"..\/sprites\/cheese.png",
+         "imageheight":75,
+         "imagewidth":75,
+         "margin":0,
+         "name":"cheese",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":75,
+         "tilewidth":75
         }],
  "tilewidth":100,
  "version":1,
