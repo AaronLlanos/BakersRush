@@ -3,11 +3,14 @@
 // jshint unused: false
 
 angular.module('app.game.controls', [])
-	.directive('gameCommand', ['GameControlFactory', 'hljs', function (GameControlFactory, hljs) {
+	.directive('gameCommand', ['GameControlFactory', 'CodeMirror', function (GameControlFactory, CodeMirror) {
 		return {
 			templateUrl: 'scripts/game/controls/control_box.html',
 			link: function (scope, iElement, iAttrs) {
-				
+				var codeMirror = CodeMirror.fromTextArea(document.getElementById('add-command'), {
+								    lineNumbers: true,
+								    theme: "dracula"
+								  });
 				scope.run = function (){
 					var val, fval, resp,
 						isClear, success;
@@ -16,19 +19,6 @@ angular.module('app.game.controls', [])
 					fval = GameControlFactory.formatCommands(val);
  					resp = GameControlFactory.checkSyntax(fval);
  					if (resp === 'valid'){
- 						// scope.$emit('run_controls', fval);
- 						// One by one pass the controls to the parent scope (game) and wait for the response. 
- 						// success = true;
- 						// angular.forEach(fval, function(v){
- 						// 	// console.log(v);
- 						// 	if (success === true){
- 						// 		isClear = scope.runCommand(v.func);
- 						// 		// console.log(isClear);
-	 					// 		if (isClear === false){
-	 					// 			success = false;
-	 					// 		}
- 						// 	}
- 						// });
  						scope.runCommand(fval);
  					}else{
  						scope.showError(resp);
@@ -38,10 +28,6 @@ angular.module('app.game.controls', [])
 				scope.showError = function(resp){
 					console.log('showing an error here');
 				};
-				// iElement.find('textarea.code').on('change', function (){
-				// 	hljs.highlightBlock(this);
-				// });
-
 			},
 			controller: function ($scope, $element) {
 				// Initialize typeahead

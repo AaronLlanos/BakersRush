@@ -10,7 +10,7 @@
  */
 angular.module('app', [
     'phaser',
-    'hljs',
+    'CodeMirror',
     'ui.router',
     'app.menu',
     'app.game',

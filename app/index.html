@@ -10,9 +10,12 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="bower_components/codemirror/theme/dracula.css">
+    <script src="bower_components/codemirror/mode/javascript/javascript.js"></script>
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -36,9 +39,6 @@
        ga('send', 'pageview');
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -52,7 +52,6 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/phaser/build/phaser.js"></script>
-    <script src="bower_components/highlightjs/highlight.pack.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="bower_components/bootstrap/dist/js/bootstrap3-typeahead.min.js"></script>
@@ -60,7 +59,7 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/ng-game.js"></script>
         <script src="scripts/lib/phaser.js"></script>
-        <script src="scripts/lib/hljs.js"></script>
+        <script src="scripts/lib/codemirror.js"></script>
         <script src="scripts/game/index.js"></script>
         <script src="scripts/game/game_controller.js"></script>
         <script src="scripts/game/game_canvas.js"></script>
