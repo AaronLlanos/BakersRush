@@ -19,6 +19,12 @@ angular.module('app.game')
 				// $log.log('destroy!');
 				GameFactory.destroyGame(scope.game);
 			});
+			scope.endLevel = function (){
+				console.log('end level!');
+			};
+			scope.nextDirection = function (){
+				console.log('next platform!');
+			};
 			scope.runCommand = function (commands){
 				scope.fval = commands.reverse();
 				scope.game.state.restart();

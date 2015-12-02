@@ -3,7 +3,7 @@
 angular.module('app.game')
 	.factory('IntroductionFactory', ['Phaser', function (Phaser) {
 		
-		var mouse, food, cheese, platform, cPlatform, pPlatform,
+		var mouse, food, cheese, platform, cPlatform, pPlatform, onCheese,
 			score = 0, scoreLabel, scoreFont, scorePosition;		
 
 		function Introduction (iGame, scope){
@@ -42,11 +42,12 @@ angular.module('app.game')
 					// iGame.load.image('mouse', 'assets/char-images/sitting-right.png');
 					iGame.load.tilemap('introMap', 'assets/maps/intro_map.json', null, Phaser.Tilemap.TILED_JSON);
 					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 100, 50);
-					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 100, 50);
+					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 25, 25);
 					iGame.load.image('cheese', 'assets/sprites/cheese.png', 75, 75);
 					iGame.load.image('cookie', 'assets/cookie-crumb.png');
 					iGame.load.spritesheet('map_tiles', 'assets/maps/tilemap.png', 100, 100);
 					iGame.load.image('background_image', 'assets/woodgrain-background.jpg');
+					onCheese = false;
 				},
 				create: function(){
 					var that = this;
@@ -115,25 +116,36 @@ angular.module('app.game')
 					score += 10;
 					scoreLabel.text = "Score: " + score;
 				},
+				endLevel: function (player, cheese){
+					if (cPlatform !== cheese){
+						pPlatform = cPlatform;
+						cPlatform = cheese;
+						this.changeDir('idle');
+						player.body.center.x = cheese.body.center.x;
+						player.body.center.y = cheese.body.center.y;
+
+						// Send a signal to the game controller that the level is finished
+						scope.endLevel();
+					}
+				},
 				onPlatform: function (player, platform) {
-					// console.log('on platform');
 					var direction;
 					if(cPlatform !== platform){
-						// console.log('on new platform');
-						console.log(scope.fval);
 						pPlatform = cPlatform;
 						cPlatform = platform;
 
 						// Just move the mouse to the center of the new platform and sit him down.
 						this.changeDir('idle');
-						player.body.x = platform.body.x;
-						player.body.y = platform.body.y;
+						console.log(player);
+						console.log(platform);
+						player.body.center.x = platform.body.center.x;
+						player.body.center.y = platform.body.center.y;
 
 						// Check to see if the mouse should be moved to a new platform
 						if (scope.fval.length > 0) {
 							direction = scope.fval.pop();
-							console.log(direction);
 							this.changeDir(direction.func);
+							scope.nextDirection();
 						}
 
 					}
