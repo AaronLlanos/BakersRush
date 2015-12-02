@@ -30,13 +30,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":335,
-                 "y":204
-=======
                  "x":340,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":1,
@@ -51,13 +46,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":310,
-                 "y":204
-=======
                  "x":315,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":1,
@@ -72,13 +62,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":360,
-                 "y":204
-=======
                  "x":365,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":1,
@@ -109,13 +94,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":210,
-                 "y":204
-=======
                  "x":215,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":1,
@@ -130,13 +110,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":235,
-                 "y":204
-=======
                  "x":240,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":1,
@@ -151,13 +126,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":260,
-                 "y":204
-=======
                  "x":265,
                  "y":202
->>>>>>> origin/master
                 }, 
                 {
                  "gid":27,
@@ -188,13 +158,8 @@
                  "type":"cheese",
                  "visible":true,
                  "width":75,
-<<<<<<< HEAD
-                 "x":411,
-                 "y":325
-=======
                  "x":408,
                  "y":300
->>>>>>> origin/master
                 }, 
                 {
                  "gid":34,
@@ -209,13 +174,8 @@
                  "type":"platform",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":439,
-                 "y":200
-=======
                  "x":140,
                  "y":197
->>>>>>> origin/master
                 }, 
                 {
                  "gid":34,
@@ -230,13 +190,8 @@
                  "type":"platform",
                  "visible":true,
                  "width":25,
-<<<<<<< HEAD
-                 "x":139,
-                 "y":200
-=======
                  "x":435,
                  "y":199
->>>>>>> origin/master
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -245,11 +200,7 @@
          "x":0,
          "y":0
         }],
-<<<<<<< HEAD
- "nextobjectid":57,
-=======
  "nextobjectid":58,
->>>>>>> origin/master
  "orientation":"orthogonal",
  "properties":
     {

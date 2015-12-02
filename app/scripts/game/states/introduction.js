@@ -3,13 +3,9 @@
 angular.module('app.game')
 	.factory('IntroductionFactory', ['Phaser', function (Phaser) {
 		
-<<<<<<< HEAD
-		var mouse, food, cheese, platform, cPlatform, pPlatform,
-			score = 0, scoreLabel, scoreFont, scorePosition, onCheese;		
-=======
+
 		var mouse, food, cheese, platform, cPlatform, pPlatform, onCheese,
-			score = 0, scoreLabel, scoreFont, scorePosition;		
->>>>>>> origin/master
+			score = 0, scoreLabel, scoreFont, scorePosition;
 
 		function Introduction (iGame, scope){
 			
@@ -43,8 +39,6 @@ angular.module('app.game')
 				    });
 				},
 				preload: function(){
-					// onPlatform = new Phaser.Signal();
-					// iGame.load.image('mouse', 'assets/char-images/sitting-right.png');
 					iGame.load.tilemap('introMap', 'assets/maps/intro_map.json', null, Phaser.Tilemap.TILED_JSON);
 					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 100, 50);
 					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 25, 25);
@@ -64,10 +58,6 @@ angular.module('app.game')
 				    this.map.addTilesetImage('objectLayer', 'cookie');
 				    this.map.addTilesetImage('platform', 'platform');
 				    this.map.addTilesetImage('tileMap', 'map_tiles');
-				    this.tileLayer = this.map.createLayer('Tile Layer 1');
-				    //collision on blockedLayer
-    				// this.map.setCollisionBetween(1, 20, true, 'Tile Layer 1');
-				    this.tileLayer.resizeWorld();
 
 				    // THE CHEESE
 				    var result = this.findObjectsByType('cheese', this.map, 'Object Layer 1');
@@ -125,14 +115,10 @@ angular.module('app.game')
 					if (cPlatform !== cheese){
 						pPlatform = cPlatform;
 						cPlatform = cheese;
+
 						this.changeDir('idle');
-<<<<<<< HEAD
 						player.body.x = cheese.body.x;
 						player.body.y = cheese.body.y;
-=======
-						player.body.center.x = cheese.body.center.x;
-						player.body.center.y = cheese.body.center.y;
->>>>>>> origin/master
 
 						// Send a signal to the game controller that the level is finished
 						scope.endLevel();
