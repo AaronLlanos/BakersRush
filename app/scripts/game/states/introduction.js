@@ -3,8 +3,13 @@
 angular.module('app.game')
 	.factory('IntroductionFactory', ['Phaser', function (Phaser) {
 		
+<<<<<<< HEAD
 		var mouse, food, cheese, platform, cPlatform, pPlatform,
 			score = 0, scoreLabel, scoreFont, scorePosition, onCheese;		
+=======
+		var mouse, food, cheese, platform, cPlatform, pPlatform, onCheese,
+			score = 0, scoreLabel, scoreFont, scorePosition;		
+>>>>>>> origin/master
 
 		function Introduction (iGame, scope){
 			
@@ -121,8 +126,13 @@ angular.module('app.game')
 						pPlatform = cPlatform;
 						cPlatform = cheese;
 						this.changeDir('idle');
+<<<<<<< HEAD
 						player.body.x = cheese.body.x;
 						player.body.y = cheese.body.y;
+=======
+						player.body.center.x = cheese.body.center.x;
+						player.body.center.y = cheese.body.center.y;
+>>>>>>> origin/master
 
 						// Send a signal to the game controller that the level is finished
 						scope.endLevel();
@@ -136,8 +146,10 @@ angular.module('app.game')
 
 						// Just move the mouse to the center of the new platform and sit him down.
 						this.changeDir('idle');
-						player.body.x = platform.body.x;
-						player.body.y = platform.body.y;
+						console.log(player);
+						console.log(platform);
+						player.body.center.x = platform.body.center.x;
+						player.body.center.y = platform.body.center.y;
 
 						// Check to see if the mouse should be moved to a new platform
 						if (scope.fval.length > 0) {
