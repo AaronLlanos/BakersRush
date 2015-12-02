@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="4" tilewidth="100" tileheight="100" backgroundcolor="#7a804e" nextobjectid="55">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="6" height="4" tilewidth="100" tileheight="100" backgroundcolor="#7a804e" nextobjectid="57">
  <tileset firstgid="1" name="objectLayer" tilewidth="25" tileheight="25" tilecount="1">
   <image source="../cookie-crumb.png" width="25" height="25"/>
  </tileset>
@@ -9,11 +9,11 @@
  <tileset firstgid="27" name="mouse" tilewidth="100" tileheight="50" tilecount="6">
   <image source="../sprites/mouse.png" width="600" height="50"/>
  </tileset>
- <tileset firstgid="33" name="platform" tilewidth="100" tileheight="50" tilecount="1">
-  <image source="../sprites/platformsprite.png" width="100" height="50"/>
- </tileset>
- <tileset firstgid="34" name="cheese" tilewidth="75" tileheight="75" tilecount="1">
+ <tileset firstgid="33" name="cheese" tilewidth="75" tileheight="75" tilecount="1">
   <image source="../sprites/cheese.png" width="75" height="75"/>
+ </tileset>
+ <tileset firstgid="34" name="platform" tilewidth="25" tileheight="25" tilecount="1">
+  <image source="../sprites/platformsprite.png" width="25" height="25"/>
  </tileset>
  <layer name="Tile Layer 1" width="6" height="4">
   <data encoding="csv">
@@ -24,17 +24,17 @@
 </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="28" name="cookie" type="collectable" gid="1" x="325" y="225" width="25" height="25">
+  <object id="28" name="cookie" type="collectable" gid="1" x="335" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="29" name="cookie" type="collectable" gid="1" x="300" y="225" width="25" height="25">
+  <object id="29" name="cookie" type="collectable" gid="1" x="310" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="30" name="cookie" type="collectable" gid="1" x="350" y="225" width="25" height="25">
+  <object id="30" name="cookie" type="collectable" gid="1" x="360" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
@@ -44,35 +44,35 @@
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="36" name="cookie" type="collectable" gid="1" x="200" y="225" width="25" height="25">
+  <object id="36" name="cookie" type="collectable" gid="1" x="210" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="37" name="cookie" type="collectable" gid="1" x="225" y="225" width="25" height="25">
+  <object id="37" name="cookie" type="collectable" gid="1" x="235" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="38" name="cookie" type="collectable" gid="1" x="250" y="225" width="25" height="25">
+  <object id="38" name="cookie" type="collectable" gid="1" x="260" y="204" width="25" height="25">
    <properties>
     <property name="display" value="cookie"/>
    </properties>
   </object>
   <object id="48" type="playerStart" gid="27" x="100" y="200" width="100" height="50"/>
-  <object id="50" type="platform" gid="33" x="100" y="200" width="100" height="50">
-   <properties>
-    <property name="display" value="platform"/>
-   </properties>
-  </object>
-  <object id="51" type="platform" gid="33" x="400" y="200" width="100" height="50">
-   <properties>
-    <property name="display" value="platform"/>
-   </properties>
-  </object>
-  <object id="54" type="cheese" gid="34" x="411" y="325" width="75" height="75">
+  <object id="54" type="cheese" gid="33" x="411" y="325" width="75" height="75">
    <properties>
     <property name="display" value="cheese"/>
+   </properties>
+  </object>
+  <object id="55" type="platform" gid="34" x="439" y="200" width="25" height="25">
+   <properties>
+    <property name="display" value="platform"/>
+   </properties>
+  </object>
+  <object id="56" type="platform" gid="34" x="139" y="200" width="25" height="25">
+   <properties>
+    <property name="display" value="platform"/>
    </properties>
   </object>
  </objectgroup>
