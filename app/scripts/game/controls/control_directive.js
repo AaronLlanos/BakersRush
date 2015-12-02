@@ -5,7 +5,7 @@
 angular.module('app.game.controls', [])
 	.directive('gameCommand', ['GameControlFactory', 'CodeMirror', function (GameControlFactory, CodeMirror) {
 		return {
-			templateUrl: 'scripts/game/controls/control_box.html',
+			templateUrl: 'templates/game/control_box.html',
 			link: function (scope, element, iAttrs) {
 
 				// Text editor display

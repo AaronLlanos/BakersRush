@@ -43,7 +43,7 @@ angular.module('app.game')
 				players: '=',
 				mapId: '='
 			},
-			templateUrl: 'scripts/game/game.html',
+			templateUrl: 'templates/game/game.html',
 			link: linkFn,
 			controller: controller
 		};
