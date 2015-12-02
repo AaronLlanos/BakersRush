@@ -9,4 +9,5 @@ angular.module('app.game')
 	.controller('GameCtrl', ['$scope', function ($scope) {
 		$scope.highestLevel = 0;
 		$scope.currentLevel = 0;
+		
 	}]);
