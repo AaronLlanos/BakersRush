@@ -10,9 +10,18 @@ angular.module('app.game.controls')
 		 * @return string         		string: 'valid' or error message.
 		 */
 		function checkSyntax (fval) {
-			var success = 'valid';
-
-			return success;
+			function commands (func){
+				if (func === "right" || func === "left" || func === "up" || func === "down") {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			angular.forEach(fval, function(v){
+				v.correctSyntax = commands(v.func);
+			});
+			// console.log(fval);
+			return fval;
 		}
 
 		/**
@@ -22,13 +31,15 @@ angular.module('app.game.controls')
 		 */
 		function formatCommands (val){
 			var v, f, a, s, fval = [];
-			val = val.split("\n");
+			// console.log(val);
 			angular.forEach(val, function (v){
-				v = v.trim();
-				s = v.split("(");
-				f = s[0].trim();
-				a = s[1].split(")")[0].trim();
-				fval.push({val: v, func: f, args: a});
+				if (v.indexOf("(") >= 0 && v.indexOf(")") >= 0){
+					v = v.trim();
+					s = v.split("(");
+					f = s[0].trim();
+					a = s[1].split(")")[0].trim();
+					fval.push({val: v, func: f, args: a});
+				}
 			});
  			return fval;
 		}
