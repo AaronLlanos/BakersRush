@@ -132,11 +132,10 @@ angular.module('app.game')
 
 						// Just move the mouse to the center of the new platform and sit him down.
 						this.changeDir('idle');
-						console.log(player);
-						console.log(platform);
-						player.body.center.x = platform.body.center.x;
-						player.body.center.y = platform.body.center.y;
-
+						player.body.x = platform.body.x - 50;
+						player.body.y = platform.body.y;
+						scope.completeDirection(false);
+						
 						// Check to see if the mouse should be moved to a new platform
 						if (scope.fval.length > 0) {
 							direction = scope.fval.pop();
@@ -154,8 +153,6 @@ angular.module('app.game')
 				    //Create the score label
 				    scoreLabel = iGame.add.text(scorePosition.x + 60, scorePosition.y, "Score: 0", {font: scoreFont, stroke: "#ff51d8", strokeThickness: 15}); 
 				    scoreLabel.fixedToCamera = true;
-				    // scoreLabel.anchor.setTo(0.5, 0);
-				    // scoreLabel.align = 'center';
 				},
 				changeDir: function (direction){
 					// console.log('changing dir to ' + direction);

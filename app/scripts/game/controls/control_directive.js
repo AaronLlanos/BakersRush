@@ -42,26 +42,64 @@ angular.module('app.game.controls', [])
 		        });
 
 				
-				scope.run = function (){
-					var val, fval, resp,
+			},
+			controller: function ($scope, $element) {
+				// Placeholder for CodeMirror lines that is updated when the user hits run
+				var userCodeLines;
+
+				$scope.userCodeLines = userCodeLines = [];
+
+				// The function that is run when the run button is clicked
+				$scope.run = function (){
+					var val, fval = [], resp,
 						isClear, success;
-					val = element.find('.CodeMirror-line');
-					fval = [];
-					angular.forEach(val, function (v){
+
+					// Update user code lines now.
+					userCodeLines = $element.find('.CodeMirror-line');
+					$scope.runIndex = 0;
+
+					angular.forEach(userCodeLines, function (v){
+						$element.find(v).css('background-color', 'rgba(0,0,0,0)');
 						fval.push(v.innerText);
 					});
 					val = fval;
 					fval = GameControlFactory.formatCommands(val);
  					resp = GameControlFactory.checkSyntax(fval);
- 					scope.runCommand(fval);
+ 					$scope.runCommand(fval);
  					
 				};
-				scope.showError = function(resp){
-					console.log('showing an error here');
+				/**
+				 * This function is the callback for the changeDirection listener.
+				 * The purpose of this function is to highlight the current user command 
+				 * being implemented in the game by the mouse. For direction completion see 
+				 * function completeDirection()
+				 * @return {[type]} [description]
+				 */
+				$scope.changeDirection = function (){
+					var blue = "rgba(118,218,255,0.3)",
+						line = userCodeLines[$scope.runIndex];
+					$element.find(line).css("background-color", blue);
 				};
-			},
-			controller: function ($scope, $element) {
-				
+				/**
+				 * This function is the callback for the completeDirection listener. 
+				 * This function highlights the previously completed user command implemented 
+				 * by the mouse and will color the row green or red upon success or failure, respectively. 
+				 * @return {[type]} [description]
+				 */
+				$scope.completeDirection = function (event, error){
+					if ($scope.runIndex !== 0){
+						var green = "rgba(74,255,71,0.3)",
+							pink = "rgba(255,81,216,0.5)",
+							line = userCodeLines[$scope.runIndex-1];
+						if (error){
+							$element.find(line).css("background-color", pink);
+						}else{
+							$element.find(line).css("background-color", green);
+						}
+					}
+				};
+				$scope.$on('changeDirection', $scope.changeDirection);
+				$scope.$on('completeDirection', $scope.completeDirection);
 			}
 		};
 	}]);

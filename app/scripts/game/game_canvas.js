@@ -10,31 +10,47 @@ angular.module('app.game')
 	 * 			to Phaser
 	 * 
 	 */
-	.directive('gameCanvas', ['GameFactory', 'GameControlFactory', '$log', '$timeout', function (GameFactory, GameControlFactory, $log, $timeout) {
+	.directive('gameCanvas', ['GameFactory', 'GameControlFactory', function (GameFactory, GameControlFactory) {
 
-		var linkFn = function (scope, ele, attrs) {
-			scope.fval = [];
-			scope.game = GameFactory.createGame(ele, scope, scope.mapId);
-			scope.$on('$destroy', function() {
-				// $log.log('destroy!');
-				GameFactory.destroyGame(scope.game);
-			});
-			scope.endLevel = function (){
-				console.log('end level!');
-			};
-			scope.nextDirection = function (){
-				console.log('next platform!');
-			};
-			scope.runCommand = function (commands){
-				scope.fval = commands.reverse();
-				scope.game.state.restart();
-			};
+		var linkFn = function (scope, element, attrs) {
+			
 		};
 
 		var controller = function ($scope, $element) {
 			// Controls for Phaser from the controls module.
-			
-			
+			var runIndex, fval, game;
+			$scope.fval = fval = []; // Connect the scope variables to avoid scope soup
+			$scope.runIndex = runIndex = 0; // Connect the scope variables to avoid scope soup
+			$scope.game = game = {}; // Connect the scope variables to avoid scope soup
+			$scope.highestLevel = 0;
+			$scope.currentLevel = 0;
+			$scope.soundOn = true;
+
+			$scope.runCommand = function (commands){
+				// Hmm need to figure out why I cant just put fval and need to define $scope.fval
+				$scope.fval = commands.reverse(); 
+				game.state.restart();
+			};
+			$scope.endLevel = function (){
+				$scope.$broadcast('completeDirection', false);
+				$scope.currentLevel += 1;
+				if ($scope.currentLevel > $scope.highestLevel){
+					$scope.highestLevel = $scope.currentLevel;
+				}
+			};
+			$scope.nextDirection = function (){
+				$scope.$broadcast('changeDirection', runIndex);
+				$scope.runIndex += 1;
+			};
+			$scope.completeDirection = function (error){
+				$scope.$broadcast('completeDirection', error);
+			};
+
+			game = GameFactory.createGame($element, $scope, $scope.mapId);
+			$scope.$on('$destroy', function() {
+				GameFactory.destroyGame(game);
+			});
+
 		};
 
 		return {
