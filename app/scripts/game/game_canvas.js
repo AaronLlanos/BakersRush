@@ -12,9 +12,7 @@ angular.module('app.game')
 	 */
 	.directive('gameCanvas', ['GameFactory', 'GameControlFactory', function (GameFactory, GameControlFactory) {
 
-		var linkFn = function (scope, element, attrs) {
-			
-		};
+		var linkFn = function (scope, element, attrs) {};
 
 		var controller = function ($scope, $element) {
 			// Controls for Phaser from the controls module.
@@ -37,6 +35,7 @@ angular.module('app.game')
 				if ($scope.currentLevel > $scope.highestLevel){
 					$scope.highestLevel = $scope.currentLevel;
 				}
+				$scope.$broadcast('triggerTransition');
 			};
 			$scope.nextDirection = function (){
 				$scope.$broadcast('changeDirection', runIndex);
