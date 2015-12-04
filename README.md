@@ -1,7 +1,9 @@
-# bakers-rush
+# Baker Rush
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.1.
+This is my first attempt to teach little kids how to code. I plan to further this project to entice specifically 
+3rd to 5th graders (smallest demographic in STEM). The command box takes in custom python functions: left(), right(), up(), down().
+
+View a live demo [here](http://aaronllanos.github.io/BakersRush)
 
 ## Build & development
 
