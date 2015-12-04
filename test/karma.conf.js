@@ -33,6 +33,12 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/phaser/build/phaser.js',
+      'bower_components/codemirror/lib/codemirror.js',
+      'bower_components/codemirror/mode/javascript/javascript.js',
+      'bower_components/codemirror/addon/hint/show-hint.js',
+      'bower_components/codemirror/addon/hint/javascript-hint.js',
+      'bower_components/codemirror/addon/hint/html-hint.js',
+      'bower_components/codemirror/addon/hint/xml-hint.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
