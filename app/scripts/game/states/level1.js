@@ -91,7 +91,7 @@ angular.module('app.game')
 					mouse.animations.add('right', [1,2], 5, true);
 					mouse.animations.add('idle_left', [3], 5, true);
 					mouse.animations.add('left', [4,5], 5, true);
-					mouse.facing = 'right'; // Should only ever be left or right.
+					mouse.facing = 'left'; // Should only ever be left or right.
 					iGame.camera.follow(mouse);
 
 					// Score

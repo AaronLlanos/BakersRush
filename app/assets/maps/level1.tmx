@@ -54,13 +54,13 @@
     <property name="display" value="cookie"/>
    </properties>
   </object>
-  <object id="48" type="playerStart" gid="2" x="100" y="300" width="100" height="50"/>
-  <object id="54" type="cheese" gid="8" x="415" y="310" width="75" height="75">
+  <object id="48" type="playerStart" gid="2" x="400" y="300" width="100" height="50"/>
+  <object id="54" type="cheese" gid="8" x="111" y="300" width="75" height="75">
    <properties>
     <property name="display" value="cheese"/>
    </properties>
   </object>
-  <object id="61" type="platform" gid="45" x="100" y="312" width="100" height="50">
+  <object id="61" type="platform" gid="45" x="400" y="312" width="100" height="50">
    <properties>
     <property name="display" value="platform"/>
    </properties>

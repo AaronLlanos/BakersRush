@@ -2,7 +2,7 @@
  "height":4,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "data":[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44],
          "height":4,
          "name":"Tile Layer 1",
          "opacity":1,
@@ -30,8 +30,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":340,
-                 "y":202
+                 "x":339,
+                 "y":322
                 }, 
                 {
                  "gid":1,
@@ -46,8 +46,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":315,
-                 "y":202
+                 "x":314,
+                 "y":322
                 }, 
                 {
                  "gid":1,
@@ -62,24 +62,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":365,
-                 "y":202
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":31,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":431,
-                 "y":249
+                 "x":364,
+                 "y":322
                 }, 
                 {
                  "gid":1,
@@ -94,8 +78,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":215,
-                 "y":202
+                 "x":214,
+                 "y":322
                 }, 
                 {
                  "gid":1,
@@ -110,8 +94,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":240,
-                 "y":202
+                 "x":239,
+                 "y":322
                 }, 
                 {
                  "gid":1,
@@ -126,11 +110,11 @@
                  "type":"collectable",
                  "visible":true,
                  "width":25,
-                 "x":265,
-                 "y":202
+                 "x":264,
+                 "y":322
                 }, 
                 {
-                 "gid":27,
+                 "gid":2,
                  "height":50,
                  "id":48,
                  "name":"",
@@ -143,10 +127,10 @@
                  "visible":true,
                  "width":100,
                  "x":100,
-                 "y":200
+                 "y":300
                 }, 
                 {
-                 "gid":33,
+                 "gid":8,
                  "height":75,
                  "id":54,
                  "name":"",
@@ -158,13 +142,13 @@
                  "type":"cheese",
                  "visible":true,
                  "width":75,
-                 "x":408,
-                 "y":300
+                 "x":415,
+                 "y":310
                 }, 
                 {
-                 "gid":34,
-                 "height":25,
-                 "id":55,
+                 "gid":45,
+                 "height":50,
+                 "id":61,
                  "name":"",
                  "properties":
                     {
@@ -173,25 +157,9 @@
                  "rotation":0,
                  "type":"platform",
                  "visible":true,
-                 "width":25,
-                 "x":140,
-                 "y":197
-                }, 
-                {
-                 "gid":34,
-                 "height":25,
-                 "id":56,
-                 "name":"",
-                 "properties":
-                    {
-                     "display":"platform"
-                    },
-                 "rotation":0,
-                 "type":"platform",
-                 "visible":true,
-                 "width":25,
-                 "x":435,
-                 "y":199
+                 "width":100,
+                 "x":100,
+                 "y":312
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -200,7 +168,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":58,
+ "nextobjectid":63,
  "orientation":"orthogonal",
  "properties":
     {
@@ -227,22 +195,6 @@
         }, 
         {
          "firstgid":2,
-         "image":"tilemap.png",
-         "imageheight":500,
-         "imagewidth":500,
-         "margin":0,
-         "name":"tileMap",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tilecount":25,
-         "tileheight":100,
-         "tilewidth":100
-        }, 
-        {
-         "firstgid":27,
          "image":"..\/sprites\/mouse.png",
          "imageheight":50,
          "imagewidth":600,
@@ -258,7 +210,7 @@
          "tilewidth":100
         }, 
         {
-         "firstgid":33,
+         "firstgid":8,
          "image":"..\/sprites\/cheese.png",
          "imageheight":75,
          "imagewidth":75,
@@ -274,10 +226,26 @@
          "tilewidth":75
         }, 
         {
-         "firstgid":34,
+         "firstgid":9,
+         "image":"tilemap.png",
+         "imageheight":600,
+         "imagewidth":600,
+         "margin":0,
+         "name":"tileLayer",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":36,
+         "tileheight":100,
+         "tilewidth":100
+        }, 
+        {
+         "firstgid":45,
          "image":"..\/sprites\/platformsprite.png",
-         "imageheight":25,
-         "imagewidth":25,
+         "imageheight":50,
+         "imagewidth":100,
          "margin":0,
          "name":"platform",
          "properties":
@@ -286,8 +254,8 @@
             },
          "spacing":0,
          "tilecount":1,
-         "tileheight":25,
-         "tilewidth":25
+         "tileheight":50,
+         "tilewidth":100
         }],
  "tilewidth":100,
  "version":1,

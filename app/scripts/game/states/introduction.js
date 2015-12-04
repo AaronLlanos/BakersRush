@@ -41,7 +41,7 @@ angular.module('app.game')
 				preload: function(){
 					iGame.load.tilemap('introMap', 'assets/maps/intro_map.json', null, Phaser.Tilemap.TILED_JSON);
 					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 100, 50);
-					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 25, 25);
+					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 100, 50);
 					iGame.load.image('cheese', 'assets/sprites/cheese.png', 75, 75);
 					iGame.load.image('cookie', 'assets/cookie-crumb.png');
 					iGame.load.spritesheet('map_tiles', 'assets/maps/tilemap.png', 100, 100);
@@ -52,12 +52,12 @@ angular.module('app.game')
 					var that = this;
 					// World
 					this.map = iGame.add.tilemap('introMap');
-					this.background = iGame.add.tileSprite(0, 0, this.world.width, this.world.height, 'background_image');
-					this.background.fixedToCamera = true;
 				    this.map.addTilesetImage('cheese', 'cheese');
 				    this.map.addTilesetImage('objectLayer', 'cookie');
 				    this.map.addTilesetImage('platform', 'platform');
-				    this.map.addTilesetImage('tileMap', 'map_tiles');
+				    this.map.addTilesetImage('tileLayer', 'map_tiles');
+				    this.tileLayer = this.map.createLayer('Tile Layer 1');
+				    this.tileLayer.resizeWorld();
 
 				    // THE CHEESE
 				    var result = this.findObjectsByType('cheese', this.map, 'Object Layer 1');
@@ -132,8 +132,8 @@ angular.module('app.game')
 
 						// Just move the mouse to the center of the new platform and sit him down.
 						this.changeDir('idle');
-						player.body.x = platform.body.x - 50;
-						player.body.y = platform.body.y;
+						player.body.x = platform.body.x;
+						player.body.y = platform.body.y - 12;
 						scope.completeDirection(false);
 						
 						// Check to see if the mouse should be moved to a new platform
