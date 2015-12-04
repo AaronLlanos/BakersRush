@@ -2,7 +2,7 @@
  "height":4,
  "layers":[
         {
-         "data":[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44],
+         "data":[20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43],
          "height":4,
          "name":"Tile Layer 1",
          "opacity":1,
@@ -19,102 +19,6 @@
          "objects":[
                 {
                  "gid":1,
-                 "height":25,
-                 "id":28,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":339,
-                 "y":322
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":29,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":314,
-                 "y":322
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":30,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":364,
-                 "y":322
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":36,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":214,
-                 "y":322
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":37,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":239,
-                 "y":322
-                }, 
-                {
-                 "gid":1,
-                 "height":25,
-                 "id":38,
-                 "name":"cookie",
-                 "properties":
-                    {
-                     "display":"cookie"
-                    },
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":25,
-                 "x":264,
-                 "y":322
-                }, 
-                {
-                 "gid":2,
                  "height":50,
                  "id":48,
                  "name":"",
@@ -130,7 +34,7 @@
                  "y":300
                 }, 
                 {
-                 "gid":8,
+                 "gid":7,
                  "height":75,
                  "id":54,
                  "name":"",
@@ -146,7 +50,7 @@
                  "y":310
                 }, 
                 {
-                 "gid":45,
+                 "gid":44,
                  "height":50,
                  "id":61,
                  "name":"",
@@ -160,6 +64,38 @@
                  "width":100,
                  "x":100,
                  "y":312
+                }, 
+                {
+                 "gid":45,
+                 "height":50,
+                 "id":63,
+                 "name":"",
+                 "properties":
+                    {
+                     "display":"cookie"
+                    },
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":50,
+                 "x":225,
+                 "y":325
+                }, 
+                {
+                 "gid":45,
+                 "height":50,
+                 "id":64,
+                 "name":"",
+                 "properties":
+                    {
+                     "display":"cookie"
+                    },
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":50,
+                 "x":325,
+                 "y":325
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -168,7 +104,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":63,
+ "nextobjectid":65,
  "orientation":"orthogonal",
  "properties":
     {
@@ -179,22 +115,6 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/cookie-crumb.png",
-         "imageheight":25,
-         "imagewidth":25,
-         "margin":0,
-         "name":"objectLayer",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":25,
-         "tilewidth":25
-        }, 
-        {
-         "firstgid":2,
          "image":"..\/sprites\/mouse.png",
          "imageheight":50,
          "imagewidth":600,
@@ -210,7 +130,7 @@
          "tilewidth":100
         }, 
         {
-         "firstgid":8,
+         "firstgid":7,
          "image":"..\/sprites\/cheese.png",
          "imageheight":75,
          "imagewidth":75,
@@ -226,7 +146,7 @@
          "tilewidth":75
         }, 
         {
-         "firstgid":9,
+         "firstgid":8,
          "image":"tilemap.png",
          "imageheight":600,
          "imagewidth":600,
@@ -242,7 +162,7 @@
          "tilewidth":100
         }, 
         {
-         "firstgid":45,
+         "firstgid":44,
          "image":"..\/sprites\/platformsprite.png",
          "imageheight":50,
          "imagewidth":100,
@@ -256,6 +176,22 @@
          "tilecount":1,
          "tileheight":50,
          "tilewidth":100
+        }, 
+        {
+         "firstgid":45,
+         "image":"..\/cookie-crumb.png",
+         "imageheight":50,
+         "imagewidth":50,
+         "margin":0,
+         "name":"objectLayer",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":50,
+         "tilewidth":50
         }],
  "tilewidth":100,
  "version":1,
