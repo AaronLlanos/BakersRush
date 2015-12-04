@@ -1,25 +1,27 @@
 'use strict';
 
 angular.module('app.game')
-	.factory('Level1Factory', ['Phaser', function (Phaser) {
+	.factory('LevelFactory', ['Phaser', function (Phaser) {
 		
 
-		function Introduction (iGame){
-			var mouse, food, user,
-				preScoreLabel, scoreLabel, scoreFont, scorePosition,
-				controls;
+		var mouse, food, cheese, platform, cPlatform, pPlatform, onCheese,
+			score = 0, scoreLabel, scoreFont, scorePosition;
+
+		function Level1 (iGame, scope){
+			
 
 			return {
 				//find objects in a Tiled layer that containt a property called "type" equal to a certain value
 				findObjectsByType: function(type, map, layer) {
-				    var result = new Array();
+				    var result = [];
 				    map.objects[layer].forEach(function(element){
 						if(element.type === type) {
 							//Phaser uses top left, Tiled bottom left so we have to adjust the y position
 							//also keep in mind that the cup images are a bit smaller than the tile which is 16x16
 							//so they might not be placed in the exact pixel position as in Tiled
 							// console.log('we in');
-							element.y -= map.tileHeight;
+							element.y -= map.tileHeight/(4/3);
+							// console.log('moving '+element.type+' by '+map.tileHeight);
 							result.push(element);
 						}      
 				    });
@@ -37,35 +39,33 @@ angular.module('app.game')
 				    });
 				},
 				preload: function(){
-					// iGame.load.image('mouse', 'assets/char-images/sitting-right.png');
-					iGame.load.tilemap('level1', 'assets/maps/level1.json', null, Phaser.Tilemap.TILED_JSON);
-					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 98, 50);
+					iGame.load.tilemap('introMap', 'assets/maps/intro_map.json', null, Phaser.Tilemap.TILED_JSON);
+					iGame.load.spritesheet('mouse', 'assets/sprites/mouse.png', 100, 50);
+					iGame.load.image('platform', 'assets/sprites/platformsprite.png', 25, 25);
+					iGame.load.image('cheese', 'assets/sprites/cheese.png', 75, 75);
 					iGame.load.image('cookie', 'assets/cookie-crumb.png');
-					iGame.load.image('map_tiles', 'assets/maps/tilemap.png');
+					iGame.load.spritesheet('map_tiles', 'assets/maps/tilemap.png', 100, 100);
 					iGame.load.image('background_image', 'assets/woodgrain-background.jpg');
+					onCheese = false;
 				},
 				create: function(){
 					var that = this;
 					// World
 					this.map = iGame.add.tilemap('introMap');
 					this.background = iGame.add.tileSprite(0, 0, this.world.width, this.world.height, 'background_image');
-				    this.background.fixedToCamera = true;
+					this.background.fixedToCamera = true;
+				    this.map.addTilesetImage('cheese', 'cheese');
 				    this.map.addTilesetImage('objectLayer', 'cookie');
-				    this.map.addTilesetImage('tileLayer', 'map_tiles');
-				    this.tileLayer = this.map.createLayer('Tile Layer 1');
-				    //collision on blockedLayer
-    				this.map.setCollisionBetween(1, 20, true, 'Tile Layer 1');
-				    this.tileLayer.resizeWorld();
-					
-					// Mouse
-					var result = this.findObjectsByType('playerStart', this.map, 'Object Layer 1');
-					mouse = iGame.add.sprite(result[0].x, result[0].y, 'mouse');
-					iGame.physics.enable(mouse, Phaser.Physics.ARCADE);
-					mouse.animations.add('idle_right', [0], 5, true);
-					mouse.animations.add('right', [1,2], 5, true);
-					mouse.animations.add('idle_left', [3], 5, true);
-					mouse.animations.add('left', [4,5], 5, true);
-					mouse.facing = 'right'; // Should only ever be left or right.
+				    this.map.addTilesetImage('platform', 'platform');
+				    this.map.addTilesetImage('tileMap', 'map_tiles');
+
+				    // THE CHEESE
+				    var result = this.findObjectsByType('cheese', this.map, 'Object Layer 1');
+				    cheese = iGame.add.group();
+					cheese.enableBody = true;
+					angular.forEach(result, function (element){
+						that.createFromTiledObject(element, cheese);
+					});
 
 					// Food
 					result = this.findObjectsByType('collectable', this.map, 'Object Layer 1');
@@ -75,28 +75,74 @@ angular.module('app.game')
 						that.createFromTiledObject(element, food);
 					});
 
+					// Platforms
+					result = this.findObjectsByType('platform', this.map, 'Object Layer 1');
+					platform = iGame.add.group();
+					platform.enableBody = true;
+					angular.forEach(result, function (element){
+						that.createFromTiledObject(element, platform);
+					});
+
+					// Mouse
+					result = this.findObjectsByType('playerStart', this.map, 'Object Layer 1');
+					mouse = iGame.add.sprite(result[0].x, result[0].y, 'mouse');
+					iGame.physics.enable(mouse, Phaser.Physics.ARCADE);
+					mouse.animations.add('idle_right', [0], 5, true);
+					mouse.animations.add('right', [1,2], 5, true);
+					mouse.animations.add('idle_left', [3], 5, true);
+					mouse.animations.add('left', [4,5], 5, true);
+					mouse.facing = 'right'; // Should only ever be left or right.
+					iGame.camera.follow(mouse);
+
 					// Score
 					this.createScore();
 
-					// Event listeners
-					controls = angular.element('.btn-game');
-					controls
-						.on('mousedown', function (){
-							var direction = angular.element(this).attr("data-direction");
-							that.changeDir(direction);
-						})
-						.on('mouseup', function (){
-							that.stopDir();
-						});
 				},
 				update: function(){
 					//collision
 					iGame.physics.arcade.collide(mouse, this.tileLayer);
 					iGame.physics.arcade.overlap(mouse, food, this.collect, null, this);
+					iGame.physics.arcade.overlap(mouse, platform, this.onPlatform, null, this);
+					iGame.physics.arcade.overlap(mouse, cheese, this.endLevel, null, this);
 				},
 				collect: function (player, collectable) {
-					console.log('yum!');
+					// console.log('yum!');
 					collectable.destroy();
+					score += 10;
+					scoreLabel.text = "Score: " + score;
+				},
+				endLevel: function (player, cheese){
+					if (cPlatform !== cheese){
+						pPlatform = cPlatform;
+						cPlatform = cheese;
+
+						this.changeDir('idle');
+						player.body.x = cheese.body.x;
+						player.body.y = cheese.body.y;
+
+						// Send a signal to the game controller that the level is finished
+						scope.endLevel();
+					}
+				},
+				onPlatform: function (player, platform) {
+					var direction;
+					if(cPlatform !== platform){
+						pPlatform = cPlatform;
+						cPlatform = platform;
+
+						// Just move the mouse to the center of the new platform and sit him down.
+						this.changeDir('idle');
+						player.body.x = platform.body.x - 50;
+						player.body.y = platform.body.y;
+						scope.completeDirection(false);
+						
+						// Check to see if the mouse should be moved to a new platform
+						if (scope.fval.length > 0) {
+							direction = scope.fval.pop();
+							this.changeDir(direction.func);
+							scope.nextDirection();
+						}
+					}
 				},
 				createScore: function(){
  					scoreFont = "20px Arial";
@@ -105,36 +151,35 @@ angular.module('app.game')
  						y: iGame.world.bounds.topLeft.y
  					};
 				    //Create the score label
-				    preScoreLabel = iGame.add.text(scorePosition.x, scorePosition.y, "Score: ", {font: scoreFont, stroke: "#535353", strokeThickness: 15}); 
-				    scoreLabel = iGame.add.text(scorePosition.x + preScoreLabel.width, scorePosition.y, "0", {font: scoreFont, fill: "#ffffff", stroke: "#535353", strokeThickness: 15}); 
-				    scoreLabel.anchor.setTo(0.5, 0);
-				    scoreLabel.align = 'center';
+				    scoreLabel = iGame.add.text(scorePosition.x + 60, scorePosition.y, "Score: 0", {font: scoreFont, stroke: "#ff51d8", strokeThickness: 15}); 
+				    scoreLabel.fixedToCamera = true;
 				},
 				changeDir: function (direction){
+					// console.log('changing dir to ' + direction);
 					// Remember that in the game world, the y axis grows downward
 					// like memory in a computer. pushl popl. That ol' chestnut. thatl chestnut haha.
 					var v = mouse.body.velocity;
 					if (direction === 'left'){
-						v.x = -100;
+						v.x = -200;
 						if (mouse.facing !== 'left'){
 							mouse.facing = 'left';
 						}
 						mouse.animations.play('left');
-					} else if (direction === 'up'){
-						v.y = -100;
+					} else if (direction === 'up'){ 
+						v.y = -200;
 						if (mouse.facing === 'left'){
 							mouse.animations.play('left'); // Do not add facing down.
 						} else {
 							mouse.animations.play('right');
 						}
 					} else if (direction === 'right'){
-						v.x = 100;
+						v.x = 200;
 						if (mouse.facing !== 'right'){
 							mouse.facing = 'right';
 						}
 						mouse.animations.play('right');
 					} else if (direction === 'down'){
-						v.y = 100;
+						v.y = 200;
 						if (mouse.facing === 'left'){
 							mouse.animations.play('left'); // Do not add facing down.
 						} else {
@@ -151,14 +196,11 @@ angular.module('app.game')
 							}
 						}
 				    }
-				},
-				stopDir: function(){
-					this.changeDir('idle');
 				}
 			};
-		};
+		}
 
 		return {
-			getIntro: Introduction
+			getLevel1: Level1
 		};
-	}])
+	}]);

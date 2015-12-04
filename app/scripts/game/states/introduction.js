@@ -201,7 +201,6 @@ angular.module('app.game')
 		}
 
 		return {
-			getIntro: Introduction,
-			getMouse: mouse
+			getIntro: Introduction
 		};
 	}]);
